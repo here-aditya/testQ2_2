@@ -1,0 +1,61 @@
+<span>Enter your string : <input type="text" onchange="alignString(this)"></span><br>
+<div id="canvas" class="canvas success"></div>
+
+<script type="text/javascript">
+function alignString(refObj) {
+	var inputStr = refObj.value.trim().toUpperCase();
+
+	if( inputStr != '') {
+		var canvasObj = document.getElementById('canvas');
+		var compStr = '';
+		var mid = parseInt(inputStr.length / 2);
+
+		if(inputStr.length % 2 != 0) {
+			for(start = 0; start < inputStr.length; start++) {
+				if(start == mid) {
+					compStr += inputStr + "<br>";
+				} else {
+					for(col = 0; col < mid; col++) {
+						compStr += " ";
+					}
+					compStr += inputStr.substr(start, 1) + "<br>";
+				}
+			}
+			canvasObj.innerHTML = compStr;
+			canvasObj.classList.remove("error");
+			canvasObj.classList.add("success");
+		} else {
+			canvasObj.innerText = "String length should be odd number.";
+			canvasObj.classList.remove("success");
+			canvasObj.classList.add("error");
+		}
+	}
+}
+</script>
+
+<style type="text/css">
+input {
+	text-transform:uppercase;
+}
+.canvas {
+	display: block;
+	margin: 50px auto;
+	background-color: #efefef;
+	height: : 40%;
+	width: 20%;
+	min-height: 180Px;
+	min-width: 50Px;
+	border: 1px solid #aeaeae;
+	position: relative;
+	transform: translate(-50%, -20%);
+	text-align: center;
+	letter-spacing: 8px;
+}
+.error {
+	color: red;
+	letter-spacing: normal;
+}
+.success {
+	color: green;
+}
+</style>
